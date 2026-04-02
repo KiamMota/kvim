@@ -23,5 +23,16 @@ vim.keymap.set('n', '<S-Tab>', ':bnext<CR>')
 
 vim.cmd([[cnoreabbrev Thisd lcd %:p:h]])
 vim.keymap.set('n', '<C-w>', ':bdelete<CR>', { silent = true })
-vim.keymap.set("n", "<A-Down>", ":m .+2<CR>==", { silent = true })
-vim.keymap.set("n", "<A-Up>", ":m .-1<CR>==", { silent = true })
+vim.keymap.set("n", "<A-Down>", function()
+  vim.cmd("m .+1")      -- move a linha
+  vim.cmd("normal! ==") -- autoindent
+end, { silent = true })
+
+vim.keymap.set("n", "<A-Up>", function()
+  vim.cmd("m .-2")      -- move a linha
+  vim.cmd("normal! ==")
+end, { silent = true })
+
+-- Move seleção no visual mode
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { silent = true })
