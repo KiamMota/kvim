@@ -1,5 +1,7 @@
 vim.o.cmdheight = 1
+
 vim.g.ui2 = true
+
 vim.opt.shortmess:append("C") -- suprime mensagens de completion
 vim.opt.shortmess:append("I") -- suprime intro
 vim.opt.shortmess:append("W") -- suprime mensagens de escrita
@@ -19,14 +21,10 @@ vim.opt.numberwidth = 5
 vim.opt.signcolumn = "yes"
 vim.opt.guicursor = "a:block"
 
--- REMOVE BORDAS ARREDONDADAS
 if vim.g.neovide then
-  -- Desativa bordas arredondadas no Neovide
   vim.g.neovide_floating_blur_amount_x = 0
   vim.g.neovide_floating_blur_amount_y = 0
   vim.g.neovide_floating_shadow = false
-  
-  -- Keymaps de zoom
   vim.keymap.set({ "n", "v" }, "<C-=>", function()
     vim.g.neovide_scale_factor = (vim.g.neovide_scale_factor or 1) + 0.1
   end)
