@@ -16,6 +16,18 @@ vim.keymap.set('n', '<C-a>', function()
   vim.cmd('normal! ggVG')
 end)
 
+-- tirando as setas
+vim.keymap.set('n', '<up>', '<nop>')
+vim.keymap.set('n', '<down>', '<nop>')
+vim.keymap.set('n', '<left>', '<nop>')
+vim.keymap.set('n', '<right>', '<nop>')
+
+-- Opcional: Desabilitar no modo Insert também (para te forçar a sair do modo de inserção)
+vim.keymap.set('i', '<up>', '<nop>')
+vim.keymap.set('i', '<down>', '<nop>')
+vim.keymap.set('i', '<left>', '<nop>')
+vim.keymap.set('i', '<right>', '<nop>')
+
 vim.keymap.set('n', '<C-Left>', ':bprevious<CR>', { desc = 'prev buf' })
 vim.keymap.set('n', '<C-Right>', ':bnext<CR>', { desc = 'next buf' })
 vim.keymap.set('n', '<C-l>', ":bnext<CR>")
