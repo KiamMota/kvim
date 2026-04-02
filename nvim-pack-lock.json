@@ -2,8 +2,7 @@
   "plugins": {
     "blink.cmp": {
       "rev": "69b469147fd879ac30d815ecd2477b1ee9b6e2c7",
-      "src": "https://github.com/saghen/blink.cmp",
-      "version": "'v0.13.1'"
+      "src": "https://github.com/saghen/blink.cmp"
     },
     "dracula.nvim": {
       "rev": "ae752c13e95fb7c5f58da4b5123cb804ea7568ee",

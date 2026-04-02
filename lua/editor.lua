@@ -1,3 +1,8 @@
+vim.o.cmdheight = 1
+vim.g.ui2 = true
+vim.opt.shortmess:append("C") -- suprime mensagens de completion
+vim.opt.shortmess:append("I") -- suprime intro
+vim.opt.shortmess:append("W") -- suprime mensagens de escrita
 vim.g.mapleader = ' '  
 vim.o.number = true
 vim.o.relativenumber = true

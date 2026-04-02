@@ -2,7 +2,7 @@
 
 vim.pack.add({
   'https://github.com/rafamadriz/friendly-snippets',
-  { src = 'https://github.com/saghen/blink.cmp', version = 'v0.13.1' },
+  { src = 'https://github.com/saghen/blink.cmp' },
 })
 
 require('blink.cmp').setup({
@@ -77,5 +77,5 @@ require('blink.cmp').setup({
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },
   },
-  fuzzy = { implementation = 'prefer_rust_with_warning' },
+  fuzzy = { implementation = 'lua' },
 })
