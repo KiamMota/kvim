@@ -18,7 +18,8 @@ end)
 
 vim.keymap.set('n', '<C-Left>', ':bprevious<CR>', { desc = 'prev buf' })
 vim.keymap.set('n', '<C-Right>', ':bnext<CR>', { desc = 'next buf' })
-
+vim.keymap.set('n', '<C-l>', ":bnext<CR>")
+vim.keymap.set('n', '<C-h>', ":bnext<CR>")
 vim.keymap.set('n', '<S-Tab>', ':bnext<CR>')
 
 vim.cmd([[cnoreabbrev Thisd lcd %:p:h]])
