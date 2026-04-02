@@ -1,4 +1,3 @@
--- lazy.nvim
 return {
   "GustavEikaas/easy-dotnet.nvim",
   -- 'nvim-telescope/telescope.nvim' or 'ibhagwan/fzf-lua' or 'folke/snacks.nvim'
@@ -60,8 +59,7 @@ return {
         },
         mappings = {
           run_test_from_buffer = { lhs = "<leader>r", desc = "run test from buffer" },
-          get_build_errors = { lhs = "<leader>e", desc = "get build errors" },
-          peek_stack_trace_from_buffer = { lhs = "<leader>p", desc = "peek stack trace from buffer" },
+            peek_stack_trace_from_buffer = { lhs = "<leader>p", desc = "peek stack trace from buffer" },
           debug_test_from_buffer = { lhs = "<leader>d", desc = "run test from buffer" },
           debug_test = { lhs = "<leader>d", desc = "debug test" },
           go_to_file = { lhs = "g", desc = "go to file" },
@@ -96,11 +94,6 @@ return {
           ---@type nil | "Off" | "Critical" | "Error" | "Warning" | "Information" | "Verbose" | "All"
           log_level = nil,
       },
-      -- choose which picker to use with the plugin
-      -- possible values are "telescope" | "fzf" | "snacks" | "basic"
-      -- if no picker is specified, the plugin will determine
-      -- the available one automatically with this priority:
-      -- telescope -> fzf -> snacks ->  basic
       picker = "telescope",
       background_scanning = true,
       notifications = {
