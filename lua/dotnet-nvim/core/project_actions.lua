@@ -1,17 +1,13 @@
 -- ~/.config/nvim/lua/dotnet.core/actions.lua
 local M = {}
-local Terminal = require("dotnet.internal.terminal_command")
-local ContextActions = require("dotnet.core.context_actions") -- usar somente o actions
+local Terminal = require("dotnet-nvim.internal.terminal_command")
 
 -- Função auxiliar para atualizar contexto depois de criar algo
 local function update_context_after_creation(path)
   if path:match("%.sln$") then
-    ContextActions.set_current_solution(path)
   elseif path:match("%.csproj$") then
-    ContextActions.set_current_project({vim.fn.fnamemodify(path, ":h")})
   else
     -- fallback: trata como pasta de projeto
-    ContextActions.set_current_project({path})
   end
 end
 

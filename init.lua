@@ -8,6 +8,6 @@ end, {})
 
 require("plugins.load") -- PRIMEIRO: instala e carrega tudo
 require("editor")       -- configurações gerais do editor
-require("dotnet").setup()
+require("dotnet-nvim").setup()
 require("keymaps")      -- keymaps que podem depender de plugins
 require("lsp")          -- lsp que depende de mason/lspconfig

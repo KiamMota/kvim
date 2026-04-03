@@ -1,6 +1,6 @@
 -- ~/.config/nvim/lua/dotnet.internal/terminal_command_exec.lua
 local M = {}
-local Loading = require("dotnet.internal.dotnet_loading")
+local Loading = require("dotnet-nvim.internal.dotnet_loading")
 
 local config = {
   messages = {

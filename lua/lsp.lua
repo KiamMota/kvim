@@ -22,7 +22,7 @@ vim.diagnostic.config({
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 -- 2. Atalhos de LSP (Format & Rename)
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-local dlog = require("dotnet.internal.dotnet_log")
+local dlog = require("dotnet-nvim.internal.dotnet_log")
 
 -- Formatação (Normal e Visual Mode)
 local format_fn = function()

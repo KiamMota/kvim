@@ -1,39 +1,36 @@
 local M = {}
+local dlog = require("dotnet-nvim.internal.dotnet_log")
+local pipe = require("dotnet-nvim.internal.pipe_client")
 
--- Criamos uma variável no escopo do módulo para garantir que o 
--- Garbage Collector não limpe o watcher enquanto o Neovim estiver aberto.
-M._watcher = nil 
+-- Removi o M._watcher pois o gerenciamento de estado agora 
+-- acontece via conexão de Socket/Pipe no daemon C#.
 
 function M.setup(opts)
-  -- 1. Carrega os módulos necessários
-  require("dotnet.core.project_actions")
-  require("dotnet.commands")
+  -- 1. Carrega os módulos de lógica e comandos
+  require("dotnet-nvim.core.project_actions")
+  require("dotnet-nvim.commands")
 
-  -- 2. Evita iniciar múltiplos watchers se o setup for chamado duas vezes
-  if M._watcher then
-    M._watcher:stop()
-  end
+  -- 2. Inicializa a conexão com o Daemon .NET
+  -- O pipe.connect() vai tentar abrir o socket em /tmp/CoreFxPipe_...
+  pipe.connect()
 
-  -- 3. Inicia o watcher
-  -- IMPORTANTE: Usamos o FSWatcher refatorado que te passei antes
-  local FSWatcher = require("dotnet.core.fswatcher") 
-  
-  -- Use :p para garantir caminho absoluto
+  -- 3. Configura o gatilho para atualizar o PWD no Daemon
+  -- Sempre que você mudar de pasta ou abrir o Neovim, o C# será avisado
+  vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
+    group = vim.api.nvim_create_augroup("DotnetDaemonSync", { clear = true }),
+    callback = function()
+      pipe.send_pwd()
+    end
+  })
+
+  -- Log de confirmação
   local root_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":p")
-  
-  M._watcher = FSWatcher.new(root_dir)
-  M._watcher:start()
-
-  -- Log de confirmação (se o seu dlog estiver funcionando)
-  local dlog = require("dotnet.internal.dotnet_log")
-  dlog.dotnet_log("Dotnet plugin initialized at: " .. root_dir)
+  dlog.dotnet_log("Dotnet Provider Client initialized. Root: " .. root_dir)
 end
 
-function M.stop_watcher()
-  if M._watcher then
-    M._watcher:stop()
-    M._watcher = nil
-  end
+--- Função para encerrar a conexão manualmente se necessário
+function M.stop_client()
+  pipe.disconnect()
 end
 
 return M
