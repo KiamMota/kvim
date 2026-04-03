@@ -3,7 +3,6 @@ vim.pack.add({
 })
 
 require("toggleterm").setup({
-  size = 3,               -- altura do terminal flutuante
   start_in_insert = true,
   direction = "float",
   close_on_exit = true,
