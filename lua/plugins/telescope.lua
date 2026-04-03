@@ -1,4 +1,3 @@
--- lua/plugins/telescope.lua
 
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',
@@ -27,8 +26,6 @@ require('telescope').setup({
       },
     },
     sorting_strategy = 'ascending',
-    prompt_prefix    = ' ',
-    selection_caret  = ' ',
     path_display     = { 'truncate' },
     file_ignore_patterns = {
       'node_modules', '.git/', 'dist/', 'build/',

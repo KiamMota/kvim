@@ -1,39 +1,30 @@
 vim.pack.add({
-  { src = 'https://github.com/akinsho/toggleterm.nvim' },
+  "https://github.com/akinsho/toggleterm.nvim"
 })
 
-require('toggleterm').setup({
-  size = 15, -- Uma altura fixa de 15 linhas é comum para o estilo VS Code
-  direction = 'horizontal', -- Muda de 'float' para 'horizontal'
-  
-  -- Garante que o terminal sempre abra na base da tela
-  on_open = function(term)
-    vim.cmd("wincmd J") 
-  end,
-
-  hide_numbers = true,
+require("toggleterm").setup({
+  size = 3,               -- altura do terminal flutuante
   start_in_insert = true,
-  terminal_mappings = true,
-  persist_size = true,
+  direction = "float",
   close_on_exit = true,
+  float_opts = {
+    border = "rounded",
+    winblend = 0,
+  },
+  on_open = function(term)
+    vim.api.nvim_buf_set_keymap(
+      term.bufnr,
+      "t",
+      "<Esc>",
+      "<C-\\><C-n>:close<CR>",
+      { noremap = true, silent = true }
+    )
+  end,
 })
 
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
-
-vim.keymap.set('n', '<leader>/', '<cmd>ToggleTerm<cr>', { desc = 'Toggle terminal' })
-
-local Terminal = require('toggleterm.terminal').Terminal
-
-local lazygit = Terminal:new({
-  cmd       = 'lazygit',
-  hidden    = true,
-  direction = 'float',
-})
-
-vim.keymap.set('n', '<leader>gg', function()
-  lazygit:toggle()
-end, { desc = 'LazyGit' })
-
-vim.keymap.set('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = 'Terminal horizontal' })
-vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>',   { desc = 'Terminal vertical' })
-vim.keymap.set('n', '<leader>tf', '<cmd>ToggleTerm direction=float<cr>',      { desc = 'Terminal float' })
+vim.keymap.set("n", "<leader>t", function()
+  require("toggleterm.terminal").Terminal:new({
+    direction = "float",
+    size = 7
+  }):toggle()
+end, { noremap = true, silent = true })
