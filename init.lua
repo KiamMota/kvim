@@ -1,6 +1,7 @@
 vim.g.mapleader      = ' '
-vim.g.maplocalleader = '\\'
 
+
+vim.g.maplocalleader = '\\'
 vim.api.nvim_create_user_command("Edit", function()
   local config_path = vim.fn.stdpath("config")
   vim.cmd("cd " .. config_path)
