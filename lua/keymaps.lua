@@ -2,7 +2,6 @@ vim.keymap.set('n', '<C-s>', '<cmd>write<CR>', { noremap = true, silent = true }
 vim.keymap.set('i', '<C-s>', '<Esc><cmd>write<CR>a', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-s>', '<Esc><cmd>write<CR>gv', { noremap = true, silent = true })
 
-
 vim.keymap.set('n', '<leader>rr', function()
   local file = vim.fn.expand('%:t:r')        -- nome do arquivo atual sem extensão
   local mod  = vim.fn.expand('%:.:r')        -- caminho relativo sem extensão
@@ -16,17 +15,6 @@ vim.keymap.set('n', '<C-a>', function()
   vim.cmd('normal! ggVG')
 end)
 
--- tirando as setas
-vim.keymap.set('n', '<up>', '<nop>')
-vim.keymap.set('n', '<down>', '<nop>')
-vim.keymap.set('n', '<left>', '<nop>')
-vim.keymap.set('n', '<right>', '<nop>')
-
--- Opcional: Desabilitar no modo Insert também (para te forçar a sair do modo de inserção)
-vim.keymap.set('i', '<up>', '<nop>')
-vim.keymap.set('i', '<down>', '<nop>')
-vim.keymap.set('i', '<left>', '<nop>')
-vim.keymap.set('i', '<right>', '<nop>')
 
 vim.keymap.set('n', '<C-Left>', ':bprevious<CR>', { desc = 'prev buf' })
 vim.keymap.set('n', '<C-Right>', ':bnext<CR>', { desc = 'next buf' })
@@ -36,16 +24,13 @@ vim.keymap.set('n', '<S-Tab>', ':bnext<CR>')
 
 vim.cmd([[cnoreabbrev Thisd lcd %:p:h]])
 vim.keymap.set('n', '<C-w>', ':bdelete<CR>', { silent = true })
-vim.keymap.set("n", "<A-Down>", function()
+vim.keymap.set("n", "<A-j>", function()
   vim.cmd("m .+1")      -- move a linha
   vim.cmd("normal! ==") -- autoindent
 end, { silent = true })
 
-vim.keymap.set("n", "<A-Up>", function()
+vim.keymap.set("n", "<A-k>", function()
   vim.cmd("m .-2")      -- move a linha
   vim.cmd("normal! ==")
 end, { silent = true })
 
--- Move seleção no visual mode
-vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { silent = true })

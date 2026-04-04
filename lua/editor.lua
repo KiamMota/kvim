@@ -15,6 +15,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.numberwidth = 5
 vim.opt.signcolumn = "yes"
+vim.opt.guicursor = ""
 
 if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_x = 0
