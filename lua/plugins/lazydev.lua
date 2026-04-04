@@ -15,8 +15,10 @@ require("lazydev").setup({
   },
 })
 
--- Configurar LSP
-require('lspconfig').lua_ls.setup({
+-- Configurar LSP (nova API do Neovim 0.11+)
+vim.lsp.config.lua_ls = {
+  cmd = { 'lua-language-server' },
+  root_markers = { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' },
   settings = {
     Lua = {
       runtime = {
@@ -33,4 +35,7 @@ require('lspconfig').lua_ls.setup({
       },
     },
   },
-})
+}
+
+-- Ativar o LSP para Lua
+vim.lsp.enable('lua_ls')

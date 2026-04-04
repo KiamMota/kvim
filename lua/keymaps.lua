@@ -3,7 +3,7 @@ vim.keymap.set('i', '<C-s>', '<Esc><cmd>write<CR>a', { noremap = true, silent = 
 vim.keymap.set('v', '<C-s>', '<Esc><cmd>write<CR>gv', { noremap = true, silent = true })
 
 
-vim.keymap.set('n', '<leader>rl', function()
+vim.keymap.set('n', '<leader>rr', function()
   local file = vim.fn.expand('%:t:r')        -- nome do arquivo atual sem extensão
   local mod  = vim.fn.expand('%:.:r')        -- caminho relativo sem extensão
                :gsub('/', '.')               -- converte / para .

@@ -1,10 +1,6 @@
-vim.o.cmdheight = 1
 
 vim.g.ui2 = true
 
-vim.opt.shortmess:append("C") -- suprime mensagens de completion
-vim.opt.shortmess:append("I") -- suprime intro
-vim.opt.shortmess:append("W") -- suprime mensagens de escrita
 vim.g.mapleader = ' '  
 vim.o.number = true
 vim.o.relativenumber = true
@@ -19,7 +15,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.numberwidth = 5
 vim.opt.signcolumn = "yes"
-vim.opt.guicursor = "a:block"
 
 if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_x = 0
