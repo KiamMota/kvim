@@ -1,13 +1,16 @@
 vim.pack.add({"https://github.com/nvim-tree/nvim-tree.lua"});
-
 require("nvim-tree").setup({
   update_cwd = true,
   view = {
     float = {
       enable = true,
       open_win_config = {
+        relative = "editor",  -- ADICIONE ESTA LINHA
         border = "rounded",
-        width = 40,
+        width = 60,
+        height = 30,          -- Também é bom definir altura
+        row = 1,              -- Posição vertical
+        col = 1,              -- Posição horizontal
       },
     },
   },
@@ -31,5 +34,4 @@ local function set_tree_cwd()
   end
 end
 
--- Map para nvim-tree (quando a árvore está aberta)
 vim.keymap.set("n", "<leader>cd", set_tree_cwd, { noremap = true, silent = true })
