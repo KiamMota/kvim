@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotnetNvimServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e73712d9372834e350caf5b9136472199fdafe6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77e190fe98bef975d16422706991002f9d518580")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotnetNvimServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotnetNvimServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

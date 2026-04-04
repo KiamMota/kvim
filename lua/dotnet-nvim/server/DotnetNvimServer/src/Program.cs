@@ -1,73 +1,42 @@
-﻿using MessagePack;
+﻿using DotnetNvimServer.MessagePackRpc;
+using MessagePack;
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        Console.WriteLine("started IO.");
 
-        var server = new MessagePackServer();
-        await server.RunAsync();
-    }
+namespace DotnetNvimServer.Server;
 
-}
-public static class InputInterceptor
-{
-    public static async Task<string> GetStringFromStream(Stream stream)
-    {
-        using (StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8))
-        {
-            return await reader.ReadToEndAsync();
-        }
-    }
-}
 public class MessagePackServer
 {
     private readonly Stream _input;
     private readonly Stream _output;
-    private readonly MessagePackStreamReader _reader;
-    public MessagePackServer()
+
+    public MessagePackServer(Stream input, Stream output)
     {
-        _input = Console.OpenStandardInput();
-        _output = Console.OpenStandardOutput();
-        _reader = new MessagePackStreamReader(_input);
-
-        Console.WriteLine("started message pack reader.");
-    }
-
-
-
-    private async Task<byte[]> BuildResponse(int messageId, string error, object result)
-    {
-        var response = new object[]
-      {
-        1,
-        messageId,
-        error,
-        result
-      };
-
-        return MessagePackSerializer.Serialize(response);
+        _input = input;
+        _output = output;
     }
 
     public async Task RunAsync()
     {
+        var reader = new MessagePackStreamReader(_input);
+
         while (true)
         {
-            var read = await _reader.ReadAsync(CancellationToken.None);
-            if (read == null)
-                break;
+            var readResult = await reader.ReadAsync(CancellationToken.None);
+            if (readResult == null) break; // fim do stream
 
             try
             {
-                var msg = MessagePackSerializer.Deserialize<object[]>(read.Value);
+                var msgReader = new MessagePackReader(readResult.Value);
+                var request = MsgPackRpcRequest.Decode(ref msgReader);
 
-                Console.WriteLine(string.Join(", ", msg));
+
+                var response = await MsgPackRpcResponse.BuildResponse(request.MessageId, null, "pong");
+                await _output.WriteAsync(response, 0, response.Length);
+                await _output.FlushAsync();
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"[server error]: {ex.Message}");
-                Console.WriteLine("aborted.");
             }
         }
     }

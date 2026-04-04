@@ -22,12 +22,10 @@ vim.diagnostic.config({
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 -- 2. Atalhos de LSP (Format & Rename)
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-local dlog = require("dotnet-nvim.internal.dotnet_log")
 
 -- Formatação (Normal e Visual Mode)
 local format_fn = function()
   vim.lsp.buf.format({ async = true })
-  dlog.dotnet_log("Código formatado")
 end
 
 vim.keymap.set({ "n", "v" }, "<leader>lf", format_fn, { desc = "LSP: Format File/Range" })
