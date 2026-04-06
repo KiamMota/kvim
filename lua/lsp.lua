@@ -39,7 +39,14 @@ end, { desc = "LSP: Rename Symbol" })
 -- Extra: Ver Definição/Referências em Floating Window
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-
+vim.keymap.set("n", "gr", function()
+  vim.lsp.buf.references(nil, {
+    on_list = function(options)
+      vim.fn.setqflist({}, " ", options)
+      vim.cmd("copen")
+    end,
+  })
+end, { desc = "Go to References (Quickfix)" })
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 -- 3. Auto-Format ao Salvar (Opcional, mas muito útil para C#)
 --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---

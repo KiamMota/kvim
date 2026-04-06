@@ -15,6 +15,16 @@ vim.keymap.set('n', '<C-a>', function()
   vim.cmd('normal! ggVG')
 end)
 
+vim.keymap.set('n', '<Up>', '<Nop>')
+vim.keymap.set('n', '<Down>', '<Nop>')
+vim.keymap.set('n', '<Left>', '<Nop>')
+vim.keymap.set('n', '<Right>', '<Nop>')
+
+-- Desabilita setas no modo insert
+vim.keymap.set('i', '<Up>', '<Nop>')
+vim.keymap.set('i', '<Down>', '<Nop>')
+vim.keymap.set('i', '<Left>', '<Nop>')
+vim.keymap.set('i', '<Right>', '<Nop>')
 
 vim.keymap.set('n', '<C-Left>', ':bprevious<CR>', { desc = 'prev buf' })
 vim.keymap.set('n', '<C-Right>', ':bnext<CR>', { desc = 'next buf' })
@@ -23,7 +33,7 @@ vim.keymap.set('n', '<C-h>', ":bnext<CR>")
 vim.keymap.set('n', '<S-Tab>', ':bnext<CR>')
 
 vim.cmd([[cnoreabbrev Thisd lcd %:p:h]])
-vim.keymap.set('n', '<C-w>', ':bdelete<CR>', { silent = true })
+vim.keymap.set('n', '<C-b>', ':bdelete<CR>', { silent = true })
 vim.keymap.set("n", "<A-j>", function()
   vim.cmd("m .+1")      -- move a linha
   vim.cmd("normal! ==") -- autoindent
