@@ -1,5 +1,9 @@
 vim.g.mapleader      = ' '
-
+vim.filetype.add({
+  extension = {
+    h = "c",
+  }
+})
 
 vim.g.maplocalleader = '\\'
 vim.api.nvim_create_user_command("Edit", function()

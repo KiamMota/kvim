@@ -1,4 +1,3 @@
--- lua/plugins/load.lua
 
 local plugin_dir = vim.fn.stdpath('config') .. '/lua/plugins'
 
