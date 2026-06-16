@@ -3,10 +3,10 @@ vim.keymap.set('i', '<C-s>', '<Esc><cmd>write<CR>a', { noremap = true, silent = 
 vim.keymap.set('v', '<C-s>', '<Esc><cmd>write<CR>gv', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>rr', function()
-  local file = vim.fn.expand('%:t:r')        -- nome do arquivo atual sem extensão
-  local mod  = vim.fn.expand('%:.:r')        -- caminho relativo sem extensão
-               :gsub('/', '.')               -- converte / para .
-               :gsub('lua%.', '')            -- remove prefixo lua.
+  local file          = vim.fn.expand('%:t:r') -- nome do arquivo atual sem extensão
+  local mod           = vim.fn.expand('%:.:r') -- caminho relativo sem extensão
+      :gsub('/', '.')                 -- converte / para .
+      :gsub('lua%.', '')              -- remove prefixo lua.
   package.loaded[mod] = nil
   require(mod)
   vim.notify('Reloaded: ' .. mod)
@@ -20,7 +20,6 @@ vim.keymap.set('n', '<Down>', '<Nop>')
 vim.keymap.set('n', '<Left>', '<Nop>')
 vim.keymap.set('n', '<Right>', '<Nop>')
 
--- Desabilita setas no modo insert
 vim.keymap.set('i', '<Up>', '<Nop>')
 vim.keymap.set('i', '<Down>', '<Nop>')
 vim.keymap.set('i', '<Left>', '<Nop>')
@@ -35,12 +34,11 @@ vim.keymap.set('n', '<S-Tab>', ':bnext<CR>')
 vim.cmd([[cnoreabbrev Thisd lcd %:p:h]])
 vim.keymap.set('n', '<C-b>', ':bdelete<CR>', { silent = true })
 vim.keymap.set("n", "<A-j>", function()
-  vim.cmd("m .+1")      -- move a linha
-  vim.cmd("normal! ==") -- autoindent
-end, { silent = true })
-
-vim.keymap.set("n", "<A-k>", function()
-  vim.cmd("m .-2")      -- move a linha
+  vim.cmd("m .+1")
   vim.cmd("normal! ==")
 end, { silent = true })
 
+vim.keymap.set("n", "<A-k>", function()
+  vim.cmd("m .-2")
+  vim.cmd("normal! ==")
+end, { silent = true })
