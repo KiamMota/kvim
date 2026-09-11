@@ -74,8 +74,7 @@
     },
     "neo-tree.nvim": {
       "rev": "84c75e7a7e443586f60508d12fc50f90d9aee14e",
-      "src": "https://github.com/nvim-neo-tree/neo-tree.nvim",
-      "version": "'v3.x'"
+      "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
     },
     "neoagent": {
       "rev": "886ac79c94df0cda98a3488fc6bd384c50411ec7",

@@ -1,12 +1,16 @@
 vim.pack.add({
   "https://github.com/sphamba/smear-cursor.nvim",
 })
-require('smear_cursor').setup({
-  stiffness = 0.8,           -- Mais rígido = mais dramático
-  trailing_tail = true,      -- Cauda arrastando
-  cursor_color = "#00ff00",  -- Verde neon
-  smear_between_buffers = true,
-  use_default_keymaps = true,
-  max_slope_horizontal = 3,
-  max_slope_vertical = 3,
-})
+
+local ok, smear = pcall(require, 'smear_cursor')
+if ok then
+  smear.setup({
+    stiffness = 0.6,          -- Menor = mais rastro e lentidão agradável (padrão é 0.6)
+    trailing_stiffness = 0.3, -- Rigidez da "cauda" que fica para trás
+
+    distance_stop_animating = 0.1,
+    hide_target_hack = false, -- Mude para true se o cursor piscar estranho ao parar
+
+    cursor_color = "#E6C384",
+  })
+end
