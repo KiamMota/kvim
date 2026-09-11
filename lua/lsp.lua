@@ -1,6 +1,3 @@
---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
--- 1. Configuração de Diagnósticos (Melhorada)
---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 vim.diagnostic.config({
   virtual_text = {
     severity = { min = vim.diagnostic.severity.ERROR },
@@ -19,24 +16,16 @@ vim.diagnostic.config({
   },
 })
 
---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
--- 2. Atalhos de LSP (Format & Rename)
---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
--- Formatação (Normal e Visual Mode)
 local format_fn = function()
   vim.lsp.buf.format({ async = true })
 end
 
 vim.keymap.set({ "n", "v" }, "<leader>lf", format_fn, { desc = "LSP: Format File/Range" })
 
--- Renomear Símbolo (Refactor)
 vim.keymap.set("n", "<leader>lr", function()
-  -- Se você tiver o plugin 'dressing.nvim', isso vira uma janela flutuante linda
   vim.lsp.buf.rename()
 end, { desc = "LSP: Rename Symbol" })
 
--- Extra: Ver Definição/Referências em Floating Window
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set("n", "gr", function()
@@ -47,9 +36,6 @@ vim.keymap.set("n", "gr", function()
     end,
   })
 end, { desc = "Go to References (Quickfix)" })
---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
--- 3. Auto-Format ao Salvar (Opcional, mas muito útil para C#)
---- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.cs",
   callback = function()
