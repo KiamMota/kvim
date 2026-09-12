@@ -27,7 +27,9 @@ require('blink.cmp').setup({
       },
     },
     menu = {
-      border     = 'single',
+      border     = 'rounded', -- Alterado de 'single' para 'rounded'
+      winblend   = 10,        -- Adiciona uma leve transparência (remova se achar ruim)
+      scrollbar  = false,     -- Oculta a barra de rolagem para um visual mais limpo
       min_width  = 20,
       max_height = 20,
       draw = {
@@ -63,7 +65,9 @@ require('blink.cmp').setup({
       auto_show          = true,
       auto_show_delay_ms = 200,
       window = {
-        border     = 'single',
+        border     = 'rounded', -- Alterado para 'rounded'
+        winblend   = 10,        -- Transparência na documentação
+        scrollbar  = false,
         max_width  = 60,
         max_height = 20,
       },
@@ -72,7 +76,10 @@ require('blink.cmp').setup({
   },
   signature = {
     enabled = true,
-    window  = { border = 'single' },
+    window  = { 
+      border   = 'rounded', -- Alterado para 'rounded'
+      winblend = 10 
+    },
   },
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },

@@ -13,7 +13,10 @@ vim.o.shiftwidth = 2
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
-vim.opt.guicursor = "n-v-i-c-ci-r:ver25-blinkwait175-blinkoff150-blinkon175"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 
@@ -36,3 +39,5 @@ if vim.g.neovide then
     vim.g.neovide_scale_factor = 1
   end)
 end
+
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Limpa o highlight da busca' })
