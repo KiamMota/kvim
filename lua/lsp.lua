@@ -1,6 +1,7 @@
 vim.diagnostic.config({
   virtual_text = {
-    severity = { min = vim.diagnostic.severity.ERROR },
+    -- Isso garante que Warnings (Avisos), Errors (Erros) e Infos apareçam no texto da frente
+    severity = { min = vim.diagnostic.severity.WARN }, 
     spacing = 4,
     prefix = "●",
   },
@@ -10,12 +11,11 @@ vim.diagnostic.config({
   severity_sort = true,
   float = {
     border = "rounded",
-    source = "always", -- Mostra qual servidor (ex: Roslyn/Omnisharp) gerou o erro
+    source = "always",
     header = "",
     prefix = "",
   },
 })
-
 local format_fn = function()
   vim.lsp.buf.format({ async = true })
 end

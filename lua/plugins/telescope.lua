@@ -7,6 +7,7 @@ local actions = require('telescope.actions')
 require('telescope').setup({
   defaults = {
     -- CONFIGURAÇÃO PARA USAR O GREP PADRÃO (SEM RIPGREP)
+    -- Ajustado com '-H' e '-n' explícitos para o Telescope ler o arquivo e a linha corretamente
     vimgrep_arguments = {
       "grep",
       "--extended-regexp",
@@ -73,32 +74,17 @@ map('n', '<leader>ff',       '<cmd>Telescope find_files<cr>',           { desc =
 map('n', '<leader>fr',       '<cmd>Telescope oldfiles<cr>',             { desc = 'Recent files' })
 map('n', '<leader>fb',       '<cmd>Telescope buffers<cr>',              { desc = 'Buffers' })
 map('n', '<leader>fh',       '<cmd>Telescope help_tags<cr>',            { desc = 'Help tags' })
-map('n', '<leader>gcs',       '<cmd>Telescope git_commits<cr>',          { desc = 'Git commits' })
+map('n', '<leader>gcs',      '<cmd>Telescope git_commits<cr>',          { desc = 'Git commits' })
 map('n', '<leader>gs',       '<cmd>Telescope git_status<cr>',           { desc = 'Git status' })
 map('n', '<leader>fd',       '<cmd>Telescope diagnostics<cr>',          { desc = 'Diagnostics' })
 map('n', '<leader>fs',       '<cmd>Telescope lsp_document_symbols<cr>', { desc = 'Document symbols' })
 map('n', '<leader>fk',       '<cmd>Telescope keymaps<cr>',              { desc = 'Keymaps' })
 map('n', '<leader><leader>', '<cmd>Telescope resume<cr>',               { desc = 'Resume last picker' })
 
--- NOVOS ATALHOS PARA BUSCA SEM RIPGREP:
+-- NOVOS ATALHOS PARA BUSCA SEM RIPGREP (CORRIGIDOS):
 
+-- 1. Grep interativo por digitação usando o comando grep do sistema de forma assíncrona
+map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Grep interativo (grep do sistema)' })
 
-map('n', '<leader>fg', function()
-  local search = vim.fn.input("Grep para: ")
-  if search ~= "" then
-    -- Executa o vimgrep nativo do Neovim no projeto atual
-    -- (O pcall evita mensagens de erro feias caso nada seja encontrado)
-    pcall(vim.cmd, "vimgrep /" .. search .. "/g **/*")
-    -- Envia a lista encontrada direto para o painel de resultados do Telescope
-    require('telescope.builtin').quickfix()
-  end
-end, { desc = 'Grep por digitação (vimgrep nativo)' })
-
--- 2. Substituição para o <leader>fw (Grep da palavra sob o cursor)
-map('n', '<leader>fw', function()
-  local word = vim.fn.expand("<cword>")
-  if word ~= "" then
-    pcall(vim.cmd, "vimgrep /" .. word .. "/g **/*")
-    require('telescope.builtin').quickfix()
-  end
-end, { desc = 'Buscar palavra sob o cursor (vimgrep nativo)' })
+-- 2. Busca automática da palavra sob o cursor usando o comando grep do sistema
+map('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = 'Buscar palavra sob o cursor' })
