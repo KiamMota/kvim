@@ -1,6 +1,7 @@
 vim.keymap.set('n', '<C-s>', '<cmd>write<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', '<Esc><cmd>write<CR>a', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-s>', '<Esc><cmd>write<CR>gv', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = false})
 
 vim.keymap.set('n', '<Up>', '<Nop>')
 vim.keymap.set('n', '<Down>', '<Nop>')
