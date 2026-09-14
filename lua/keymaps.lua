@@ -48,6 +48,13 @@ vim.keymap.set("n", "<A-j>", function()
   vim.cmd("normal! ==")
 end, { silent = true })
 
+
+vim.keymap.set('v', '<Tab>', '>gv', { silent = true })
+vim.keymap.set('v', '<S-Tab>', '<gv', { silent = true })
+-- Mover bloco selecionado para baixo e para cima no modo visual
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { silent = true })
+
 vim.keymap.set("n", "<A-k>", function()
   vim.cmd("m .-2")
   vim.cmd("normal! ==")
